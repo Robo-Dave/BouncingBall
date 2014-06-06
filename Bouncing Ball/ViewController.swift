@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     let radius = 25.0
     let interval = 0.02
     let bounciness = 0.9
-    let accelScale = 1000.0
+    let friction = 0.0001
+    let accelScale = 3600.0
     var x  = 0.0, y  = 0.0
     var dx = 100.0, dy = -100.0
     var ax = 0.0, ay = 1000.0
@@ -29,9 +30,9 @@ class ViewController: UIViewController {
             ax = Double(accelData!.x) * accelScale
             ay = Double(accelData!.y) * -accelScale
         }
-        
-        dx += ax * interval
-        dy += ay * interval
+
+        dx = dx * (1 - friction) + ax * interval
+        dy = dy * (1 - friction) + ay * interval
 
         x += dx * interval
         y += dy * interval
