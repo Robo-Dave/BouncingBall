@@ -15,14 +15,19 @@ class ViewController: UIViewController {
     
     let radius = 25.0
     let interval = 0.02
-    let bounciness = 0.9
-    let friction = 0.0001
-    let accelScale = 3600.0
+    var bounciness = 0.9
+    var friction = 0.0005
+    var accelScale = 3600.0
     var x  = 0.0, y  = 0.0
     var dx = 100.0, dy = -100.0
     var ax = 0.0, ay = 1000.0
     
     var accel = CMMotionManager()
+    
+    func animateLinear(interval: NSTimeInterval, animations:()->Void) {
+        UIView.animateWithDuration(interval, delay:0, options:UIViewAnimationOptions.CurveLinear,
+            animations:animations, completion:nil)
+    }
     
     func runTimer(theTimer: NSTimer) {
         let accelData = accel.accelerometerData?.acceleration
@@ -62,9 +67,7 @@ class ViewController: UIViewController {
         }
         
         
-        UIView.animateWithDuration(interval, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {
-            self.ball.center = CGPoint(x: Int(self.x), y: Int(self.y)) }, completion: nil)
-
+        animateLinear(interval) { self.ball.center = CGPoint(x: Int(self.x), y: Int(self.y)) }
     }
     
     func demoAccel(theTimer: NSTimer) {
@@ -92,6 +95,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        
+        let settingsView = segue!.destinationViewController as SettingsViewController
+        settingsView.mainView = self
+    }
 }
 
