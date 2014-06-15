@@ -158,6 +158,25 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="About" id="HdI-Dz-Qjm">
+                                <cells>
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" textLabel="8Jj-ch-Nvs" style="IBUITableViewCellStyleDefault" id="oZe-tF-KEo">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oZe-tF-KEo" id="w9c-4k-3BI">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Copyright © 2014 David Rottenfusser.  All rights reserved." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="450" id="8Jj-ch-Nvs">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="1AD-Vn-bzS" id="hkh-nj-xhR"/>
@@ -165,7 +184,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="UiM-Xe-r1p"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="480" height="480"/>
                     <connections>
                         <outlet property="BouncinessSlider" destination="YPZ-aJ-Tuu" id="sIt-j1-g0j"/>
@@ -175,7 +193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaK-bQ-6nQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747" y="141"/>
+            <point key="canvasLocation" x="747" y="135"/>
         </scene>
     </scenes>
     <resources>
