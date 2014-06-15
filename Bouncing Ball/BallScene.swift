@@ -59,6 +59,7 @@ class BallScene: SKScene {
         ball.name = "ball"
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2)
         ball.physicsBody.restitution = CGFloat(bounciness)
+        ball.physicsBody.usesPreciseCollisionDetection = true
         self.addChild(ball)
         ball.physicsBody.applyImpulse(randomImpulse(100))
     } // func newBall
