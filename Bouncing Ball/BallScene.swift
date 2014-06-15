@@ -19,23 +19,31 @@ class BallScene: SKScene {
     
     var gravity = 9.8
     var bounciness = 0.9
-    var accel: CMMotionManager?
-
+    let accel = CMMotionManager()
+    
     override func didMoveToView(view: SKView!) {
         super.didMoveToView(view)
         self.backgroundColor = SKColor.whiteColor()
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsWorld.gravity = CGVector(0, CGFloat(-gravity))
         newBall()
+        
+        accel.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler:accelUpdate)
     }
     
-    override func update(currentTime: NSTimeInterval) {
-        if accel!.accelerometerAvailable {
-            let a = accel!.accelerometerData.acceleration
-            physicsWorld.gravity.dx = CGFloat(a.x * gravity)
-            physicsWorld.gravity.dy = CGFloat(a.y * gravity)
+    override func willMoveFromView(view: SKView!) {
+        accel.stopAccelerometerUpdates()
+        super.willMoveFromView(view)
+    }
+    
+    func accelUpdate(data:CMAccelerometerData!, err:NSError!) {
+        if (!err) {
+            let dx = CGFloat(data.acceleration.x * gravity)
+            let dy = CGFloat(data.acceleration.y * gravity)
+            physicsWorld.gravity = CGVector(dx,dy)
+        } else {
+            accel.stopAccelerometerUpdates()
         }
-        super.update(currentTime)
     }
     
     func randomImpulse(size:Double) -> CGVector {
@@ -52,6 +60,6 @@ class BallScene: SKScene {
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2)
         ball.physicsBody.restitution = CGFloat(bounciness)
         self.addChild(ball)
-        //ball.physicsBody.applyImpulse(randomImpulse(100))
+        ball.physicsBody.applyImpulse(randomImpulse(100))
     }
 }

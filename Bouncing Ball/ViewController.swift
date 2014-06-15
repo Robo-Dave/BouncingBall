@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     var friction = 0.1
     var gravity = 9.8
     
-    var accel = CMMotionManager()
     var accelTimer: NSTimer?
     var scene: BallScene!
     
@@ -51,12 +50,10 @@ class ViewController: UIViewController {
         spriteView.showsFPS = true
         
         scene = BallScene(size:CGSize(width:view.bounds.width,height:view.bounds.height))
-        scene.accel = accel
         spriteView.presentScene(scene)
         setPhysics()
         
-        accel.startAccelerometerUpdates()
-        if !(accel.accelerometerAvailable) {
+        if !(CMMotionManager().accelerometerAvailable) {
             accelTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "demoAccel:", userInfo: nil, repeats: true)
             demoAccel(accelTimer!)
         }
