@@ -13,8 +13,15 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var BouncinessSlider : UISlider
     @IBOutlet var FrictionSlider : UISlider
     @IBOutlet var GravitySlider : UISlider
+    @IBOutlet var StatsSwitch : UISwitch
     
     var mainView: ViewController?
+    
+    @IBAction func ResetBalls(sender : AnyObject) {
+        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+        delegate.scene?.removeAllChildren()
+        delegate.scene?.newBall()
+    }
     
     /*
     init(style: UITableViewStyle) {
@@ -30,6 +37,7 @@ class SettingsViewController: UITableViewController {
             BouncinessSlider.value = CFloat(mainView!.bounciness)
             FrictionSlider.value = CFloat(mainView!.friction)
             GravitySlider.value = CFloat(mainView!.gravity)
+            StatsSwitch.setOn(mainView!.showStats, animated: false)
         }
     }
 
@@ -49,6 +57,7 @@ class SettingsViewController: UITableViewController {
         mainView.bounciness = Double(BouncinessSlider.value)
         mainView.friction   = Double(FrictionSlider.value)
         mainView.gravity = Double(GravitySlider.value)
+        mainView.showStats = Bool(StatsSwitch.state)
     }
 
 

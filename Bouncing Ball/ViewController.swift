@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var bounciness = 0.9
     var friction = 0.1
     var gravity = 9.8
+    var showStats = true
     
     var accelTimer: NSTimer?
     var scene: BallScene!
@@ -45,11 +46,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let spriteView = self.view as SKView
-        spriteView.showsDrawCount = true
-        spriteView.showsNodeCount = true
-        spriteView.showsFPS = true
+        spriteView.showsDrawCount = showStats
+        spriteView.showsNodeCount = showStats
+        spriteView.showsFPS = showStats
         
-        scene = BallScene(size:CGSize(width:view.bounds.width,height:view.bounds.height))
+        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+        if (delegate.scene) {
+            scene = delegate.scene
+        } else {
+            scene = BallScene(size:CGSize(width:view.bounds.width,height:view.bounds.height))
+            scene.newBall()
+            delegate.scene = scene
+        }
         spriteView.presentScene(scene)
         setPhysics()
         
@@ -70,6 +78,7 @@ class ViewController: UIViewController {
         
         let settingsView = segue!.destinationViewController as SettingsViewController
         settingsView.mainView = self
+        //(view as SKView).presentScene(nil)
         
         accelTimer?.invalidate()
     }

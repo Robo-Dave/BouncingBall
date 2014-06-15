@@ -26,7 +26,6 @@ class BallScene: SKScene {
         self.backgroundColor = SKColor.whiteColor()
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsWorld.gravity = CGVector(0, CGFloat(-gravity))
-        newBall()
         
         accel.startAccelerometerUpdatesToQueue(NSOperationQueue()) {
             (data, err) in
