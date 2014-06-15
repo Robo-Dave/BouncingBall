@@ -29,7 +29,7 @@ class SettingsViewController: UITableViewController {
         if mainView {
             BouncinessSlider.value = CFloat(mainView!.bounciness)
             FrictionSlider.value = CFloat(mainView!.friction)
-            GravitySlider.value = CFloat(mainView!.accelScale)
+            GravitySlider.value = CFloat(mainView!.gravity)
         }
     }
 
@@ -48,7 +48,7 @@ class SettingsViewController: UITableViewController {
         let mainView = segue!.destinationViewController as ViewController
         mainView.bounciness = Double(BouncinessSlider.value)
         mainView.friction   = Double(FrictionSlider.value)
-        mainView.accelScale = Double(GravitySlider.value)
+        mainView.gravity = Double(GravitySlider.value)
     }
 
 

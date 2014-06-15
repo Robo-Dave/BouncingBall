@@ -12,6 +12,8 @@
 		631BE056193E85DA00759107 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 631BE054193E85DA00759107 /* Main.storyboard */; };
 		631BE058193E85DA00759107 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 631BE057193E85DA00759107 /* Images.xcassets */; };
 		631BE064193E85DB00759107 /* Bouncing_BallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631BE063193E85DB00759107 /* Bouncing_BallTests.swift */; };
+		634CC261194D7BD2003BABA0 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634CC260194D7BD2003BABA0 /* SpriteKit.framework */; };
+		634CC263194D7EC7003BABA0 /* BallScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CC262194D7EC7003BABA0 /* BallScene.swift */; };
 		637BC0091943F80500626379 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637BC0081943F80500626379 /* SettingsViewController.swift */; };
 		63BCD9F8193ED528002C6F69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 631BE054193E85DA00759107 /* Main.storyboard */; };
 		63BCD9FA193ED579002C6F69 /* circle-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 63BCD9F9193ED579002C6F69 /* circle-100.png */; };
@@ -37,6 +39,8 @@
 		631BE05D193E85DB00759107 /* Bouncing BallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bouncing BallTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		631BE062193E85DB00759107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		631BE063193E85DB00759107 /* Bouncing_BallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bouncing_BallTests.swift; sourceTree = "<group>"; };
+		634CC260194D7BD2003BABA0 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		634CC262194D7EC7003BABA0 /* BallScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallScene.swift; sourceTree = "<group>"; };
 		637BC0081943F80500626379 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63BCD9F9193ED579002C6F69 /* circle-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-100.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634CC261194D7BD2003BABA0 /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +67,7 @@
 		631BE042193E85DA00759107 = {
 			isa = PBXGroup;
 			children = (
+				634CC260194D7BD2003BABA0 /* SpriteKit.framework */,
 				631BE04D193E85DA00759107 /* Bouncing Ball */,
 				631BE060193E85DB00759107 /* Bouncing BallTests */,
 				631BE04C193E85DA00759107 /* Products */,
@@ -83,6 +89,7 @@
 				637BC0081943F80500626379 /* SettingsViewController.swift */,
 				631BE050193E85DA00759107 /* AppDelegate.swift */,
 				631BE052193E85DA00759107 /* ViewController.swift */,
+				634CC262194D7EC7003BABA0 /* BallScene.swift */,
 				631BE054193E85DA00759107 /* Main.storyboard */,
 				631BE057193E85DA00759107 /* Images.xcassets */,
 				631BE04E193E85DA00759107 /* Supporting Files */,
@@ -221,6 +228,7 @@
 				631BE053193E85DA00759107 /* ViewController.swift in Sources */,
 				631BE051193E85DA00759107 /* AppDelegate.swift in Sources */,
 				637BC0091943F80500626379 /* SettingsViewController.swift in Sources */,
+				634CC263194D7EC7003BABA0 /* BallScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
