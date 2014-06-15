@@ -185,7 +185,6 @@
                             <outlet property="delegate" destination="1AD-Vn-bzS" id="HTt-Up-QQv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="UiM-Xe-r1p"/>
                     <size key="freeformSize" width="480" height="480"/>
                     <connections>
                         <outlet property="BouncinessSlider" destination="YPZ-aJ-Tuu" id="sIt-j1-g0j"/>
