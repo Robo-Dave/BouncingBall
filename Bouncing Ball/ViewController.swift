@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     var ax = 0.0, ay = 1000.0
     
     var accel = CMMotionManager()
+    var accelTimer: NSTimer?
+    var bounceTimer: NSTimer?
     
     func animateLinear(interval: NSTimeInterval, animations:()->Void) {
         UIView.animateWithDuration(interval, delay:0, options:UIViewAnimationOptions.CurveLinear,
@@ -85,9 +87,9 @@ class ViewController: UIViewController {
             dx = 0
             dy = 0
         } else {
-            NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "demoAccel:", userInfo: nil, repeats: true)
+            accelTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "demoAccel:", userInfo: nil, repeats: true)
         }
-        NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: "runTimer:", userInfo: nil, repeats: true)
+        bounceTimer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: "runTimer:", userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,6 +103,10 @@ class ViewController: UIViewController {
         
         let settingsView = segue!.destinationViewController as SettingsViewController
         settingsView.mainView = self
+        
+        ball.center = CGPoint( x: CGFloat(x), y: CGFloat(y) )
+        accelTimer?.invalidate()
+        bounceTimer?.invalidate()
     }
 }
 
