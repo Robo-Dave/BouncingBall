@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var scene: BallScene?
 
+    var bounciness = 0.9 // ratio (0-1)
+    var friction = 0.1   // ratio (0-1)
+    var gravity = 9.8    // m/s²
+    var showStats = true
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         // Override point for customization after application launch.
         return true

@@ -12,10 +12,7 @@ import CoreMotion
 
 class ViewController: UIViewController {
     
-    var bounciness = 0.9 // ratio (0-1)
-    var friction = 0.1   // ratio (0-1)
-    var gravity = 9.8    // m/s²
-    var showStats = true
+    let app = UIApplication.sharedApplication().delegate as AppDelegate
     
     var accelTimer: NSTimer? // used when accelerometer isn't available
     var scene: BallScene!
@@ -27,24 +24,10 @@ class ViewController: UIViewController {
     } // func AddButton
     
     
-    // updates model with new phyiscal parameters
-    func setPhysics() {
-        if !scene { return }
-        
-        scene.gravity = gravity
-        scene.bounciness = bounciness
-        scene.enumerateChildNodesWithName("ball") {
-            (node, stop) in
-            node.physicsBody.linearDamping = CGFloat(self.friction)
-            node.physicsBody.restitution = CGFloat(self.bounciness)
-        } // enumerateChildNodesWithName
-    } // func setPhysics
-    
-    
     // sets gravity to a random vector (used when accelerometer isn't present)
     func demoAccel(theTimer: NSTimer) {
-        let ax = (drand48() * 2 - 1) * gravity
-        let ay = (drand48() * 2 - 1) * gravity
+        let ax = (drand48() * 2 - 1) * app.gravity
+        let ay = (drand48() * 2 - 1) * app.gravity
         scene.physicsWorld.gravity = CGVectorMake(CGFloat(ax),CGFloat(ay))
     } // func demoAccel
     
@@ -52,23 +35,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // enable stats
         let spriteView = self.view as SKView
-        spriteView.showsDrawCount = showStats
-        spriteView.showsNodeCount = showStats
-        spriteView.showsFPS = showStats
+        spriteView.showsDrawCount = app.showStats
+        spriteView.showsNodeCount = app.showStats
+        spriteView.showsFPS = app.showStats
         
-        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
-        if (delegate.scene) {
-            scene = delegate.scene
+        // get scene, or create new one
+        if (app.scene) {
+            scene = app.scene
         } else {
             scene = BallScene(size:CGSize(width:view.bounds.width,height:view.bounds.height))
             scene.newBall()
-            delegate.scene = scene
+            app.scene = scene
         } // else
         
+        // start simulation
         spriteView.presentScene(scene)
-        setPhysics()
+        scene.setPhysics()
         
+        // start gravity randomizer if actual gravity isn't available
         if !(CMMotionManager().accelerometerAvailable) {
             accelTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "demoAccel:", userInfo: nil, repeats: true)
             demoAccel(accelTimer!)
@@ -77,8 +63,6 @@ class ViewController: UIViewController {
 
     
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        let settingsView = segue!.destinationViewController as SettingsViewController
-        settingsView.mainView = self
         accelTimer?.invalidate()
     } // func prepareForSegue
 

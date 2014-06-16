@@ -15,36 +15,32 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var GravitySlider    : UISlider
     @IBOutlet var StatsSwitch      : UISwitch
     
-    var mainView: ViewController?
+    let app = UIApplication.sharedApplication().delegate as AppDelegate
     
     // sets number of balls back to 1
     @IBAction func ResetBalls(sender : AnyObject) {
-        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
-        delegate.scene?.removeAllChildren()
-        delegate.scene?.newBall()
+        app.scene?.removeAllChildren()
+        app.scene?.newBall()
     } // func ResetBalls
 
     
     // load parameters from main view
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if mainView {
-            BouncinessSlider.value = CFloat(mainView!.bounciness)
-            FrictionSlider.value = CFloat(mainView!.friction)
-            GravitySlider.value = CFloat(mainView!.gravity)
-            StatsSwitch.on = mainView!.showStats
-        } // if
+        
+        BouncinessSlider.value = CFloat(app.bounciness)
+        FrictionSlider.value = CFloat(app.friction)
+        GravitySlider.value = CFloat(app.gravity)
+        StatsSwitch.on = app.showStats
     } // func viewDidLoad
 
     
     // save parameters back to main view
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        let mainView = segue!.destinationViewController as ViewController
-        mainView.bounciness = Double(BouncinessSlider.value)
-        mainView.friction   = Double(FrictionSlider.value)
-        mainView.gravity = Double(GravitySlider.value)
-        mainView.showStats = StatsSwitch.on
+        app.bounciness = Double(BouncinessSlider.value)
+        app.friction = Double(FrictionSlider.value)
+        app.gravity = Double(GravitySlider.value)
+        app.showStats = StatsSwitch.on
     } // func prepareForSegue
 
 } // class SettingsViewController
