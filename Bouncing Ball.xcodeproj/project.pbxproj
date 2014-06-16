@@ -17,6 +17,7 @@
 		637BC0091943F80500626379 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637BC0081943F80500626379 /* SettingsViewController.swift */; };
 		63BCD9F8193ED528002C6F69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 631BE054193E85DA00759107 /* Main.storyboard */; };
 		63BCD9FA193ED579002C6F69 /* circle-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 63BCD9F9193ED579002C6F69 /* circle-100.png */; };
+		63BE0C9C194E9C0300BD42AA /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BE0C9B194E9C0300BD42AA /* Ball.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		634CC262194D7EC7003BABA0 /* BallScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallScene.swift; sourceTree = "<group>"; };
 		637BC0081943F80500626379 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63BCD9F9193ED579002C6F69 /* circle-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-100.png"; sourceTree = "<group>"; };
+		63BE0C9B194E9C0300BD42AA /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				631BE050193E85DA00759107 /* AppDelegate.swift */,
 				631BE052193E85DA00759107 /* ViewController.swift */,
 				634CC262194D7EC7003BABA0 /* BallScene.swift */,
+				63BE0C9B194E9C0300BD42AA /* Ball.swift */,
 				631BE054193E85DA00759107 /* Main.storyboard */,
 				631BE057193E85DA00759107 /* Images.xcassets */,
 				631BE04E193E85DA00759107 /* Supporting Files */,
@@ -227,6 +230,7 @@
 			files = (
 				631BE053193E85DA00759107 /* ViewController.swift in Sources */,
 				631BE051193E85DA00759107 /* AppDelegate.swift in Sources */,
+				63BE0C9C194E9C0300BD42AA /* Ball.swift in Sources */,
 				637BC0091943F80500626379 /* SettingsViewController.swift in Sources */,
 				634CC263194D7EC7003BABA0 /* BallScene.swift in Sources */,
 			);

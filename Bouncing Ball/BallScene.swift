@@ -10,13 +10,6 @@ import UIKit
 import SpriteKit
 import CoreMotion
 
-// convenience function, used in BallScene.newBall()
-@assignment func /= (inout left:CGSize, right:CGFloat) {
-    left.height /= right
-    left.width /= right
-} // func /=
-
-
 // Runs the bouncing balls and their physics environment.
 class BallScene: SKScene {
     
@@ -72,13 +65,8 @@ class BallScene: SKScene {
     
 
     func newBall() {
-        let ball = SKSpriteNode(imageNamed:"circle-100.png")
+        let ball = Ball()
         ball.position = CGPoint(x:frame.midX, y:frame.midY)
-        ball.size /= 2
-        ball.name = "ball"
-        ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2)
-        ball.physicsBody.restitution = CGFloat(app.bounciness)
-        ball.physicsBody.usesPreciseCollisionDetection = true
         self.addChild(ball)
         ball.physicsBody.applyImpulse(randomImpulse(100))
     } // func newBall
