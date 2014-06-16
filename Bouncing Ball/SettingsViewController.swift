@@ -11,25 +11,21 @@ import UIKit
 class SettingsViewController: UITableViewController {
 
     @IBOutlet var BouncinessSlider : UISlider
-    @IBOutlet var FrictionSlider : UISlider
-    @IBOutlet var GravitySlider : UISlider
-    @IBOutlet var StatsSwitch : UISwitch
+    @IBOutlet var FrictionSlider   : UISlider
+    @IBOutlet var GravitySlider    : UISlider
+    @IBOutlet var StatsSwitch      : UISwitch
     
     var mainView: ViewController?
     
+    // sets number of balls back to 1
     @IBAction func ResetBalls(sender : AnyObject) {
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         delegate.scene?.removeAllChildren()
         delegate.scene?.newBall()
-    }
-    
-    /*
-    init(style: UITableViewStyle) {
-        super.init(style: style)
-        // Custom initialization
-    }
-    */
+    } // func ResetBalls
 
+    
+    // load parameters from main view
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,27 +34,17 @@ class SettingsViewController: UITableViewController {
             FrictionSlider.value = CFloat(mainView!.friction)
             GravitySlider.value = CFloat(mainView!.gravity)
             StatsSwitch.on = mainView!.showStats
-        }
-    }
+        } // if
+    } // func viewDidLoad
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    // save parameters back to main view
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-
         let mainView = segue!.destinationViewController as ViewController
         mainView.bounciness = Double(BouncinessSlider.value)
         mainView.friction   = Double(FrictionSlider.value)
         mainView.gravity = Double(GravitySlider.value)
         mainView.showStats = StatsSwitch.on
-    }
+    } // func prepareForSegue
 
-
-}
+} // class SettingsViewController

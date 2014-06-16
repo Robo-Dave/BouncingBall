@@ -10,15 +10,18 @@ import UIKit
 import SpriteKit
 import CoreMotion
 
+// convenience function, used in BallScene.newBall()
 @assignment func /= (inout left:CGSize, right:CGFloat) {
     left.height /= right
     left.width /= right
 } // func /=
 
+
+// Runs the bouncing balls and their physics environment.
 class BallScene: SKScene {
     
-    var gravity = 9.8
-    var bounciness = 0.9
+    var gravity = 9.8    // m/s²
+    var bounciness = 0.9 // ratio (0-1)
     let accel = CMMotionManager()
     
     override func didMoveToView(view: SKView!) {
@@ -38,20 +41,22 @@ class BallScene: SKScene {
             } // else
             NSOperationQueue.currentQueue().cancelAllOperations()
         } // startAccelerometerUpdatesToQueue
-
     } // func didMovetoView
+
     
     override func willMoveFromView(view: SKView!) {
         accel.stopAccelerometerUpdates()
         super.willMoveFromView(view)
     } // func willMoveFromView
     
+
     func randomImpulse(size:Double) -> CGVector {
         let dx = drand48() * 2 - 1
         let dy = drand48() * 2 - 1
         return CGVectorMake(CGFloat(dx*size), CGFloat(dy*size))
     } // func randomImpulse
     
+
     func newBall() {
         let ball = SKSpriteNode(imageNamed:"circle-100.png")
         ball.position = CGPoint(x:frame.midX, y:frame.midY)

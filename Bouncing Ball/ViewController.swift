@@ -12,18 +12,22 @@ import CoreMotion
 
 class ViewController: UIViewController {
     
-    var bounciness = 0.9
-    var friction = 0.1
-    var gravity = 9.8
+    var bounciness = 0.9 // ratio (0-1)
+    var friction = 0.1   // ratio (0-1)
+    var gravity = 9.8    // m/s²
     var showStats = true
     
-    var accelTimer: NSTimer?
+    var accelTimer: NSTimer? // used when accelerometer isn't available
     var scene: BallScene!
     
+    
+    // called when (+) button is tapped
     @IBAction func AddButton(sender : AnyObject) {
         scene.newBall()
-    }
+    } // func AddButton
     
+    
+    // updates model with new phyiscal parameters
     func setPhysics() {
         if !scene { return }
         
@@ -33,14 +37,17 @@ class ViewController: UIViewController {
             (node, stop) in
             node.physicsBody.linearDamping = CGFloat(self.friction)
             node.physicsBody.restitution = CGFloat(self.bounciness)
-        }
-    }
+        } // enumerateChildNodesWithName
+    } // func setPhysics
     
+    
+    // sets gravity to a random vector (used when accelerometer isn't present)
     func demoAccel(theTimer: NSTimer) {
         let ax = (drand48() * 2 - 1) * gravity
         let ay = (drand48() * 2 - 1) * gravity
         scene.physicsWorld.gravity = CGVectorMake(CGFloat(ax),CGFloat(ay))
-    }
+    } // func demoAccel
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,30 +64,23 @@ class ViewController: UIViewController {
             scene = BallScene(size:CGSize(width:view.bounds.width,height:view.bounds.height))
             scene.newBall()
             delegate.scene = scene
-        }
+        } // else
+        
         spriteView.presentScene(scene)
         setPhysics()
         
         if !(CMMotionManager().accelerometerAvailable) {
             accelTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "demoAccel:", userInfo: nil, repeats: true)
             demoAccel(accelTimer!)
-        }
-    }
+        } // if
+    } // func viewDidLoad
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-        
         let settingsView = segue!.destinationViewController as SettingsViewController
         settingsView.mainView = self
-        //(view as SKView).presentScene(nil)
-        
         accelTimer?.invalidate()
-    }
-}
+    } // func prepareForSegue
+
+} // class ViewController
 
