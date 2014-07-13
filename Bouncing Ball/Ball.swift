@@ -20,7 +20,10 @@ import SpriteKit
 }
 
 class Ball: SKSpriteNode {
-    
+
+    var lastPos: CGPoint!
+    var lastTime: NSTimeInterval!
+    var lastVelocity: CGVector!
 
     class func newBall() -> Ball {
         let app = UIApplication.sharedApplication().delegate as AppDelegate
@@ -39,18 +42,36 @@ class Ball: SKSpriteNode {
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
         physicsBody.dynamic = false
+        lastPos = position
+        lastTime = (touches.anyObject() as UITouch).timestamp
     }
    
     override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
         let touch = touches.anyObject() as UITouch
         position = touch.locationInNode(parent)
+        
+        let time = touch.timestamp
+        let interval = CGFloat(time - lastTime)
+        if (interval > 0) {
+            lastVelocity = CGVectorMake((position.x - lastPos.x) / interval, (position.y - lastPos.y) / interval)
+            lastPos = position
+            lastTime = time
+        }
     }
     
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
         physicsBody.dynamic = true
+        if (lastVelocity) {
+            physicsBody.velocity = lastVelocity
+            lastVelocity = nil
+        }
     }
     
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
         physicsBody.dynamic = true
+        if (lastVelocity) {
+            physicsBody.velocity = lastVelocity
+            lastVelocity = nil
+        }
     }
 }
