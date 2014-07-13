@@ -21,24 +21,20 @@ import SpriteKit
 
 class Ball: SKSpriteNode {
     
-    let app = UIApplication.sharedApplication().delegate as AppDelegate
-    
-    init(texture: SKTexture!) {
-        super.init(texture: texture)
-    }
-    
-    init(texture: SKTexture!, color: UIColor!, size: CGSize) {
-        super.init(texture:texture, color:color, size:size)
-    }
-    
-    init() {
-        super.init(imageNamed:"circle-100.png")
-        size = CGSizeMake(size.width/2, size.height/2)
-        name = "ball"
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
+
+    class func newBall() -> Ball {
+        let app = UIApplication.sharedApplication().delegate as AppDelegate
+        
+        var ball = Ball(imageNamed:"circle-100.png")
+        let size = ball.size;
+        ball.size = CGSizeMake(size.width/2, size.height/2)
+        ball.name = "ball"
+        var physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4)
         physicsBody.restitution = CGFloat(app.bounciness)
         physicsBody.usesPreciseCollisionDetection = true
-        userInteractionEnabled = true
+        ball.physicsBody = physicsBody
+        ball.userInteractionEnabled = true
+        return ball
     }
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {

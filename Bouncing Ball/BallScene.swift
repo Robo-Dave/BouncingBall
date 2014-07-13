@@ -65,7 +65,7 @@ class BallScene: SKScene {
     
 
     func newBall() {
-        let ball = Ball()
+        let ball = Ball.newBall()
         ball.position = CGPoint(x:frame.midX, y:frame.midY)
         self.addChild(ball)
         ball.physicsBody.applyImpulse(randomImpulse(100))
