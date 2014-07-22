@@ -10,10 +10,10 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
 
-    @IBOutlet var BouncinessSlider : UISlider
-    @IBOutlet var FrictionSlider   : UISlider
-    @IBOutlet var GravitySlider    : UISlider
-    @IBOutlet var StatsSwitch      : UISwitch
+    @IBOutlet var BouncinessSlider : UISlider!
+    @IBOutlet var FrictionSlider   : UISlider!
+    @IBOutlet var GravitySlider    : UISlider!
+    @IBOutlet var StatsSwitch      : UISwitch!
     
     let app = UIApplication.sharedApplication().delegate as AppDelegate
     
