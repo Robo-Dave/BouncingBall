@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         spriteView.showsFPS = app.showStats
         
         // get scene, or create new one
-        if (app.scene) {
+        if (app.scene != nil) {
             scene = app.scene
         } else {
             scene = BallScene(size:CGSize(width:view.bounds.width,height:view.bounds.height))

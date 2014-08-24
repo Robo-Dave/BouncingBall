@@ -10,12 +10,12 @@ import UIKit
 import SpriteKit
 
 // convenience function, used in BallScene.newBall()
-@assignment func /= (inout left:CGSize, right:CGFloat) {
+func /= (inout left:CGSize, right:CGFloat) {
     left.height /= right
     left.width /= right
 } // func /=
 
-@infix func - (left: CGPoint, right: CGPoint) -> CGVector {
+func - (left: CGPoint, right: CGPoint) -> CGVector {
     return CGVectorMake(left.x - right.x, left.y - right.y)
 }
 
@@ -61,7 +61,7 @@ class Ball: SKSpriteNode {
     
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
         physicsBody.dynamic = true
-        if (lastVelocity) {
+        if (lastVelocity != nil) {
             physicsBody.velocity = lastVelocity
             lastVelocity = nil
         }
@@ -69,7 +69,7 @@ class Ball: SKSpriteNode {
     
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
         physicsBody.dynamic = true
-        if (lastVelocity) {
+        if (lastVelocity != nil) {
             physicsBody.velocity = lastVelocity
             lastVelocity = nil
         }

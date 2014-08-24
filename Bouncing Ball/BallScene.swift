@@ -34,7 +34,7 @@ class BallScene: SKScene {
     
     // runs whenever accelerometer data is available
     func accelUpdate(data: CMAccelerometerData!, err: NSError!) {
-        if (err) {
+        if (err != nil) {
             accel.stopAccelerometerUpdates()
         } else {
             let dx = CGFloat(data.acceleration.x * app.gravity)
@@ -43,7 +43,7 @@ class BallScene: SKScene {
         } // else
         
         // we only need one update at a time
-        NSOperationQueue.currentQueue().cancelAllOperations()
+        NSOperationQueue.currentQueue()!.cancelAllOperations()
     } // func accelUpdate
     
 
