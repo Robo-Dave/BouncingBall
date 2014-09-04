@@ -16,7 +16,7 @@ class BallScene: SKScene {
     let accel = CMMotionManager()
     let app = UIApplication.sharedApplication().delegate as AppDelegate
     
-    override func didMoveToView(view: SKView!) {
+    override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
         self.backgroundColor = SKColor.whiteColor()
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
@@ -26,7 +26,7 @@ class BallScene: SKScene {
     } // func didMovetoView
 
     
-    override func willMoveFromView(view: SKView!) {
+    override func willMoveFromView(view: SKView) {
         accel.stopAccelerometerUpdates()
         super.willMoveFromView(view)
     } // func willMoveFromView
@@ -49,10 +49,10 @@ class BallScene: SKScene {
 
     // updates model with new phyiscal parameters
     func setPhysics() {
-        scene.enumerateChildNodesWithName("ball") {
+        self.enumerateChildNodesWithName("ball") {
             (node, stop) in
-            node.physicsBody.linearDamping = CGFloat(self.app.friction)
-            node.physicsBody.restitution = CGFloat(self.app.bounciness)
+            node.physicsBody?.linearDamping = CGFloat(self.app.friction)
+            node.physicsBody?.restitution = CGFloat(self.app.bounciness)
         } // enumerateChildNodesWithName
     } // func setPhysics
 
@@ -68,7 +68,7 @@ class BallScene: SKScene {
         let ball = Ball.newBall()
         ball.position = CGPoint(x:frame.midX, y:frame.midY)
         self.addChild(ball)
-        ball.physicsBody.applyImpulse(randomImpulse(100))
+        ball.physicsBody?.applyImpulse(randomImpulse(100))
     } // func newBall
 
 } // class BallScene

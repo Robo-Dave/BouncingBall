@@ -40,13 +40,13 @@ class Ball: SKSpriteNode {
         return ball
     }
     
-    override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
-        physicsBody.dynamic = false
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        physicsBody?.dynamic = false
         lastPos = position
         lastTime = (touches.anyObject() as UITouch).timestamp
     }
    
-    override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         let touch = touches.anyObject() as UITouch
         position = touch.locationInNode(parent)
         
@@ -60,17 +60,17 @@ class Ball: SKSpriteNode {
     }
     
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
-        physicsBody.dynamic = true
+        physicsBody?.dynamic = true
         if (lastVelocity != nil) {
-            physicsBody.velocity = lastVelocity
+            physicsBody?.velocity = lastVelocity
             lastVelocity = nil
         }
     }
     
-    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
-        physicsBody.dynamic = true
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        physicsBody?.dynamic = true
         if (lastVelocity != nil) {
-            physicsBody.velocity = lastVelocity
+            physicsBody?.velocity = lastVelocity
             lastVelocity = nil
         }
     }
