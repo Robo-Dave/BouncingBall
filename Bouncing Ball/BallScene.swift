@@ -20,7 +20,7 @@ class BallScene: SKScene {
         super.didMoveToView(view)
         self.backgroundColor = SKColor.whiteColor()
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
-        self.physicsWorld.gravity = CGVector(0, CGFloat(-app.gravity))
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: CGFloat(-app.gravity))
         
         accel.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler:accelUpdate)
     } // func didMovetoView
@@ -39,7 +39,7 @@ class BallScene: SKScene {
         } else {
             let dx = CGFloat(data.acceleration.x * app.gravity)
             let dy = CGFloat(data.acceleration.y * app.gravity)
-            self.physicsWorld.gravity = CGVector(dx,dy)
+            self.physicsWorld.gravity = CGVector(dx: dx,dy: dy)
         } // else
         
         // we only need one update at a time
